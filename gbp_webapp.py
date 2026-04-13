@@ -3,13 +3,27 @@
 
 import json
 import os
+import secrets
+import urllib.parse
 from datetime import datetime
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
+import requests as http_requests
+
 from gbp_manager import GBPManager, logger
+
+# ============================================================
+# GOOGLE OAUTH2 WEB FLOW
+# ============================================================
+GOOGLE_AUTH_URL = "https://accounts.google.com/o/oauth2/v2/auth"
+GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token"
+GBP_SCOPES = "https://www.googleapis.com/auth/business.manage"
+
+# Lưu OAuth state tạm thời (anti-CSRF)
+_oauth_states: dict = {}
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -20,6 +34,8 @@ DEMO_LOCATIONS_FILE = BASE_DIR / "locations.example.json"
 class GBPWebApp:
     def __init__(self):
         self.manager = GBPManager()
+        # Nạp token từ env var nếu có (Railway deployment)
+        self.manager.client.load_token_from_env()
         if DEFAULT_LOCATIONS_FILE.exists():
             self.manager.load_locations_from_file(str(DEFAULT_LOCATIONS_FILE))
             logger.info(f"Đã nạp locations từ {DEFAULT_LOCATIONS_FILE}")
@@ -202,6 +218,25 @@ class GBPWebApp:
         self.manager.client._authenticate()
         return self.get_status()
 
+    def save_web_token(self, token_data: dict):
+        """Lưu token nhận từ web OAuth flow xuống file và reload client"""
+        token_file = BASE_DIR / self.manager.config["TOKEN_FILE"]
+        # Chuyển format Google response → format google-auth library mong đợi
+        normalized = {
+            "token": token_data.get("access_token", ""),
+            "refresh_token": token_data.get("refresh_token", ""),
+            "token_uri": GOOGLE_TOKEN_URL,
+            "client_id": self.manager.config["CLIENT_ID"],
+            "client_secret": self.manager.config["CLIENT_SECRET"],
+            "scopes": [GBP_SCOPES],
+        }
+        with open(token_file, "w", encoding="utf-8") as f:
+            json.dump(normalized, f, ensure_ascii=False, indent=2)
+        logger.info(f"Token đã lưu vào {token_file}")
+        # Reload client với token mới
+        self.manager.client._authenticate()
+        return self.get_status()
+
     @staticmethod
     def _star_label(stars):
         mapping = {1: "ONE", 2: "TWO", 3: "THREE", 4: "FOUR", 5: "FIVE"}
@@ -227,6 +262,15 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self):
         parsed = urlparse(self.path)
+
+        # ── OAuth Web Flow ──────────────────────────────────────
+        if parsed.path == "/oauth/start":
+            return self._oauth_start()
+
+        if parsed.path == "/oauth/callback":
+            return self._oauth_callback(parsed)
+        # ────────────────────────────────────────────────────────
+
         if parsed.path == "/api/status":
             return self._write_json(APP.get_status())
         if parsed.path == "/api/locations":
@@ -241,6 +285,77 @@ class Handler(SimpleHTTPRequestHandler):
         if parsed.path == "/":
             self.path = "/gbp_dashboard.html"
         return super().do_GET()
+
+    def _oauth_start(self):
+        """Bước 1: Redirect user sang Google để xác thực"""
+        client_id = APP.manager.config.get("CLIENT_ID", "")
+        redirect_uri = APP.manager.config.get("REDIRECT_URI", "")
+
+        if not client_id or client_id.startswith("YOUR_"):
+            return self._write_json(
+                {"error": "Chưa cấu hình GBP_CLIENT_ID trong Railway Variables"},
+                status=HTTPStatus.BAD_REQUEST,
+            )
+
+        state = secrets.token_hex(16)
+        _oauth_states[state] = True  # lưu để verify sau
+
+        params = {
+            "client_id": client_id,
+            "redirect_uri": redirect_uri,
+            "response_type": "code",
+            "scope": GBP_SCOPES,
+            "access_type": "offline",
+            "prompt": "consent",
+            "state": state,
+        }
+        auth_url = GOOGLE_AUTH_URL + "?" + urllib.parse.urlencode(params)
+        logger.info(f"OAuth start → redirect to Google: {auth_url[:80]}...")
+        self.send_response(HTTPStatus.FOUND)
+        self.send_header("Location", auth_url)
+        self.end_headers()
+
+    def _oauth_callback(self, parsed):
+        """Bước 2: Google redirect về đây với authorization code"""
+        query = parse_qs(parsed.query)
+        code = query.get("code", [None])[0]
+        state = query.get("state", [None])[0]
+        error = query.get("error", [None])[0]
+
+        if error:
+            logger.error(f"OAuth error từ Google: {error}")
+            self.send_response(HTTPStatus.FOUND)
+            self.send_header("Location", "/?auth=error&reason=" + urllib.parse.quote(error))
+            self.end_headers()
+            return
+
+        if not code or state not in _oauth_states:
+            return self._write_json({"error": "OAuth callback không hợp lệ"}, status=HTTPStatus.BAD_REQUEST)
+
+        _oauth_states.pop(state, None)  # xóa state đã dùng
+
+        # Đổi code lấy access + refresh token
+        try:
+            resp = http_requests.post(GOOGLE_TOKEN_URL, data={
+                "code": code,
+                "client_id": APP.manager.config["CLIENT_ID"],
+                "client_secret": APP.manager.config["CLIENT_SECRET"],
+                "redirect_uri": APP.manager.config["REDIRECT_URI"],
+                "grant_type": "authorization_code",
+            }, timeout=15)
+            resp.raise_for_status()
+            token_data = resp.json()
+        except Exception as exc:
+            logger.exception("Lỗi đổi OAuth code lấy token")
+            return self._write_json({"error": str(exc)}, status=HTTPStatus.INTERNAL_SERVER_ERROR)
+
+        APP.save_web_token(token_data)
+        logger.info("OAuth web flow hoàn tất — token đã lưu")
+
+        # Redirect về dashboard với thông báo thành công
+        self.send_response(HTTPStatus.FOUND)
+        self.send_header("Location", "/?auth=success")
+        self.end_headers()
 
     def do_POST(self):
         parsed = urlparse(self.path)

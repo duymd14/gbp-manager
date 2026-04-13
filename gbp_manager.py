@@ -166,6 +166,22 @@ class GBPClient:
             logger.error(f"Lỗi xác thực: {e}")
             self.credentials = None
 
+    def load_token_from_env(self):
+        """Đọc token từ biến môi trường GBP_TOKEN_JSON (dùng khi deploy trên Railway)"""
+        token_json = os.environ.get("GBP_TOKEN_JSON", "")
+        if not token_json:
+            return False
+        try:
+            token_file = self.config["TOKEN_FILE"]
+            with open(token_file, "w", encoding="utf-8") as f:
+                f.write(token_json)
+            logger.info("Đã nạp token từ biến môi trường GBP_TOKEN_JSON")
+            self._authenticate()
+            return True
+        except Exception as e:
+            logger.error(f"Lỗi nạp GBP_TOKEN_JSON từ env: {e}")
+            return False
+
     def get_reviews(self, location):
         """Lấy danh sách review của một địa điểm"""
         if not self.credentials:

@@ -1184,16 +1184,24 @@ async function refreshApiStatus() {
   }
 }
 
-async function connectGoogle() {
-  showToast('Đang mở luồng xác thực Google...', '');
-  try {
-    await apiPost('/api/auth', {});
-    await refreshApiStatus();
-    showToast('Xác thực Google hoàn tất', 'success');
-  } catch (error) {
-    showToast(error.message, 'warning');
-  }
+function connectGoogle() {
+  // Dùng Web OAuth flow — redirect sang Google, không cần local terminal
+  showToast('Đang chuyển sang trang xác thực Google...', '');
+  window.location.href = '/oauth/start';
 }
+
+// Kiểm tra kết quả OAuth khi load trang
+(function checkOAuthResult() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('auth') === 'success') {
+    setTimeout(() => showToast('Xác thực Google thành công! ✓', 'success'), 500);
+    history.replaceState({}, '', '/');
+  } else if (params.get('auth') === 'error') {
+    const reason = params.get('reason') || 'unknown';
+    setTimeout(() => showToast('Xác thực thất bại: ' + reason, 'warning'), 500);
+    history.replaceState({}, '', '/');
+  }
+})();
 
 async function loadTemplatesFromApi() {
   try {
