@@ -856,15 +856,15 @@
           <h4>🔑 Google Business Profile API</h4>
           <div class="form-group">
             <label class="form-label">Client ID</label>
-            <input class="form-control" type="text" placeholder="Dán Google OAuth Client ID vào đây" value="123456789-abc...googleusercontent.com">
+            <input id="inputClientId" class="form-control" type="text" placeholder="Dán Google OAuth Client ID vào đây">
           </div>
           <div class="form-group">
             <label class="form-label">Client Secret</label>
-            <input class="form-control" type="password" placeholder="Client Secret" value="GOCSPX-***">
+            <input id="inputClientSecret" class="form-control" type="password" placeholder="Client Secret">
           </div>
           <div class="form-group">
             <label class="form-label">Access Token (tự động làm mới)</label>
-            <input class="form-control" type="text" placeholder="ya29.***" value="ya29.a0Aa...">
+            <input class="form-control" type="text" placeholder="ya29.*** (tự động sau khi xác thực)" readonly>
           </div>
           <div style="display:flex;gap:10px;margin-top:8px">
             <button class="btn btn-primary" onclick="connectGoogle()">🔗 Kết nối & Xác thực</button>
@@ -1184,10 +1184,26 @@ async function refreshApiStatus() {
   }
 }
 
-function connectGoogle() {
-  // Dùng Web OAuth flow — redirect sang Google, không cần local terminal
-  showToast('Đang chuyển sang trang xác thực Google...', '');
-  window.location.href = '/oauth/start';
+async function connectGoogle() {
+  const clientId = (document.getElementById('inputClientId')?.value || '').trim();
+  const clientSecret = (document.getElementById('inputClientSecret')?.value || '').trim();
+
+  if (!clientId || !clientSecret) {
+    showToast('Vui lòng nhập Client ID và Client Secret trước', 'warning');
+    return;
+  }
+
+  showToast('Đang lưu credentials và chuyển sang Google...', '');
+  try {
+    const res = await apiPost('/api/save-credentials', { client_id: clientId, client_secret: clientSecret });
+    if (res.ok) {
+      window.location.href = '/oauth/start';
+    } else {
+      showToast(res.error || 'Lỗi lưu credentials', 'warning');
+    }
+  } catch(e) {
+    showToast(e.message, 'warning');
+  }
 }
 
 // Kiểm tra kết quả OAuth khi load trang

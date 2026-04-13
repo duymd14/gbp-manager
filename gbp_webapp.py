@@ -24,6 +24,10 @@ GBP_SCOPES = "https://www.googleapis.com/auth/business.manage"
 
 # Lưu OAuth state tạm thời (anti-CSRF)
 _oauth_states: dict = {}
+# Lưu credentials tạm thời từ form UI (keyed by state)
+_oauth_credentials: dict = {}
+# Credentials được lưu từ form (dùng khi env vars không có)
+_saved_credentials: dict = {"client_id": "", "client_secret": "", "redirect_uri": ""}
 
 
 BASE_DIR = Path(__file__).resolve().parent
@@ -296,13 +300,26 @@ class Handler(SimpleHTTPRequestHandler):
 
     def _oauth_start(self):
         """Bước 1: Redirect user sang Google để xác thực"""
-        # Đọc trực tiếp từ os.environ để tránh lỗi do module-level CONFIG đã được cache
-        client_id = os.environ.get("GBP_CLIENT_ID") or APP.manager.config.get("CLIENT_ID", "")
-        redirect_uri = os.environ.get("GBP_REDIRECT_URI") or APP.manager.config.get("REDIRECT_URI", "")
+        # Ưu tiên: env vars → credentials từ UI form → config
+        client_id = (
+            os.environ.get("GBP_CLIENT_ID")
+            or _saved_credentials.get("client_id")
+            or APP.manager.config.get("CLIENT_ID", "")
+        )
+        redirect_uri = (
+            os.environ.get("GBP_REDIRECT_URI")
+            or _saved_credentials.get("redirect_uri")
+            or APP.manager.config.get("REDIRECT_URI", "")
+        )
+        # Tự build redirect_uri từ host nếu chưa có
+        if not redirect_uri or "localhost:8080" in redirect_uri:
+            host = self.headers.get("Host", "localhost")
+            scheme = "https" if "railway.app" in host else "http"
+            redirect_uri = f"{scheme}://{host}/oauth/callback"
 
         if not client_id or client_id.startswith("YOUR_"):
             return self._write_json(
-                {"error": "Chưa cấu hình GBP_CLIENT_ID trong Railway Variables"},
+                {"error": "Vui lòng nhập Client ID trong form API & Kết nối trước khi xác thực"},
                 status=HTTPStatus.BAD_REQUEST,
             )
 
@@ -343,10 +360,26 @@ class Handler(SimpleHTTPRequestHandler):
 
         _oauth_states.pop(state, None)  # xóa state đã dùng
 
-        # Đổi code lấy access + refresh token — luôn đọc từ os.environ trực tiếp
-        client_id = os.environ.get("GBP_CLIENT_ID") or APP.manager.config.get("CLIENT_ID", "")
-        client_secret = os.environ.get("GBP_CLIENT_SECRET") or APP.manager.config.get("CLIENT_SECRET", "")
-        redirect_uri = os.environ.get("GBP_REDIRECT_URI") or APP.manager.config.get("REDIRECT_URI", "")
+        # Đổi code lấy access + refresh token — ưu tiên env vars → UI form → config
+        client_id = (
+            os.environ.get("GBP_CLIENT_ID")
+            or _saved_credentials.get("client_id")
+            or APP.manager.config.get("CLIENT_ID", "")
+        )
+        client_secret = (
+            os.environ.get("GBP_CLIENT_SECRET")
+            or _saved_credentials.get("client_secret")
+            or APP.manager.config.get("CLIENT_SECRET", "")
+        )
+        redirect_uri = (
+            os.environ.get("GBP_REDIRECT_URI")
+            or _saved_credentials.get("redirect_uri")
+            or ""
+        )
+        if not redirect_uri or "localhost:8080" in redirect_uri:
+            host = self.headers.get("Host", "localhost")
+            scheme = "https" if "railway.app" in host else "http"
+            redirect_uri = f"{scheme}://{host}/oauth/callback"
 
         try:
             resp = http_requests.post(GOOGLE_TOKEN_URL, data={
@@ -374,6 +407,19 @@ class Handler(SimpleHTTPRequestHandler):
         parsed = urlparse(self.path)
         payload = self._read_json_body()
         try:
+            if parsed.path == "/api/save-credentials":
+                # Lưu credentials từ form UI vào memory
+                _saved_credentials["client_id"] = payload.get("client_id", "").strip()
+                _saved_credentials["client_secret"] = payload.get("client_secret", "").strip()
+                host = self.headers.get("Host", "localhost")
+                scheme = "https" if "railway.app" in host else "http"
+                _saved_credentials["redirect_uri"] = (
+                    os.environ.get("GBP_REDIRECT_URI")
+                    or payload.get("redirect_uri", "").strip()
+                    or f"{scheme}://{host}/oauth/callback"
+                )
+                logger.info(f"Credentials saved from UI: client_id={_saved_credentials['client_id'][:20]}...")
+                return self._write_json({"ok": True, "redirect": "/oauth/start"})
             if parsed.path == "/api/auth":
                 return self._write_json(APP.authenticate())
             if parsed.path == "/api/reply/suggest":
