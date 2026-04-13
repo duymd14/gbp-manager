@@ -14,6 +14,7 @@ from gbp_manager import GBPManager, logger
 
 BASE_DIR = Path(__file__).resolve().parent
 DEFAULT_LOCATIONS_FILE = BASE_DIR / "locations.json"
+DEMO_LOCATIONS_FILE = BASE_DIR / "locations.example.json"
 
 
 class GBPWebApp:
@@ -21,6 +22,11 @@ class GBPWebApp:
         self.manager = GBPManager()
         if DEFAULT_LOCATIONS_FILE.exists():
             self.manager.load_locations_from_file(str(DEFAULT_LOCATIONS_FILE))
+            logger.info(f"Đã nạp locations từ {DEFAULT_LOCATIONS_FILE}")
+        elif DEMO_LOCATIONS_FILE.exists():
+            # Dùng demo data nếu chưa có file thật — chạy ở chế độ mock
+            self.manager.load_locations_from_file(str(DEMO_LOCATIONS_FILE))
+            logger.warning("locations.json không tồn tại → dùng locations.example.json (chế độ demo)")
 
     def get_status(self):
         token_file = BASE_DIR / self.manager.config["TOKEN_FILE"]
@@ -266,11 +272,24 @@ class Handler(SimpleHTTPRequestHandler):
         body = self.rfile.read(length).decode("utf-8")
         return json.loads(body)
 
+    def _add_cors_headers(self):
+        """Thêm CORS headers để cho phép frontend gọi API từ các origin khác"""
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type")
+
+    def do_OPTIONS(self):
+        """Xử lý preflight CORS request"""
+        self.send_response(HTTPStatus.NO_CONTENT)
+        self._add_cors_headers()
+        self.end_headers()
+
     def _write_json(self, payload, status=HTTPStatus.OK):
         encoded = json.dumps(payload, ensure_ascii=False).encode("utf-8")
         self.send_response(status)
         self.send_header("Content-Type", "application/json; charset=utf-8")
         self.send_header("Content-Length", str(len(encoded)))
+        self._add_cors_headers()
         self.end_headers()
         self.wfile.write(encoded)
 

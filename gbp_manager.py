@@ -49,15 +49,15 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # ============================================================
-# CẤU HÌNH CHÍNH - Chỉnh sửa theo thông tin của bạn
+# CẤU HÌNH CHÍNH - Đọc từ environment variables (ưu tiên) hoặc giá trị mặc định
+# Đặt GBP_CLIENT_ID và GBP_CLIENT_SECRET trong file .env hoặc Railway Variables
 # ============================================================
 CONFIG = {
-    # Google OAuth2 Credentials
-    # Lấy tại: https://console.cloud.google.com
-    "CLIENT_ID": "YOUR_CLIENT_ID.apps.googleusercontent.com",
-    "CLIENT_SECRET": "YOUR_CLIENT_SECRET",
-    "REDIRECT_URI": "http://localhost:8080/callback",
-    "TOKEN_FILE": "gbp_token.json",
+    # Google OAuth2 Credentials - đọc từ env vars
+    "CLIENT_ID": os.environ.get("GBP_CLIENT_ID", "YOUR_CLIENT_ID.apps.googleusercontent.com"),
+    "CLIENT_SECRET": os.environ.get("GBP_CLIENT_SECRET", "YOUR_CLIENT_SECRET"),
+    "REDIRECT_URI": os.environ.get("GBP_REDIRECT_URI", "http://localhost:8080/callback"),
+    "TOKEN_FILE": os.environ.get("GBP_TOKEN_FILE", "gbp_token.json"),
 
     # Cài đặt tự động hóa
     "AUTO_REPLY_5_STAR": True,       # Tự động reply 5 sao
