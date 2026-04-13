@@ -271,6 +271,14 @@ class Handler(SimpleHTTPRequestHandler):
             return self._oauth_callback(parsed)
         # ────────────────────────────────────────────────────────
 
+        if parsed.path == "/api/debug":
+            # Kiểm tra env vars đã được load chưa (không hiện giá trị thật)
+            return self._write_json({
+                "GBP_CLIENT_ID": "set" if os.environ.get("GBP_CLIENT_ID") else "NOT SET",
+                "GBP_CLIENT_SECRET": "set" if os.environ.get("GBP_CLIENT_SECRET") else "NOT SET",
+                "GBP_REDIRECT_URI": os.environ.get("GBP_REDIRECT_URI", "NOT SET"),
+                "config_CLIENT_ID_ok": not APP.manager.config.get("CLIENT_ID","").startswith("YOUR_"),
+            })
         if parsed.path == "/api/status":
             return self._write_json(APP.get_status())
         if parsed.path == "/api/locations":
@@ -288,8 +296,9 @@ class Handler(SimpleHTTPRequestHandler):
 
     def _oauth_start(self):
         """Bước 1: Redirect user sang Google để xác thực"""
-        client_id = APP.manager.config.get("CLIENT_ID", "")
-        redirect_uri = APP.manager.config.get("REDIRECT_URI", "")
+        # Đọc trực tiếp từ os.environ để tránh lỗi do module-level CONFIG đã được cache
+        client_id = os.environ.get("GBP_CLIENT_ID") or APP.manager.config.get("CLIENT_ID", "")
+        redirect_uri = os.environ.get("GBP_REDIRECT_URI") or APP.manager.config.get("REDIRECT_URI", "")
 
         if not client_id or client_id.startswith("YOUR_"):
             return self._write_json(
@@ -334,13 +343,17 @@ class Handler(SimpleHTTPRequestHandler):
 
         _oauth_states.pop(state, None)  # xóa state đã dùng
 
-        # Đổi code lấy access + refresh token
+        # Đổi code lấy access + refresh token — luôn đọc từ os.environ trực tiếp
+        client_id = os.environ.get("GBP_CLIENT_ID") or APP.manager.config.get("CLIENT_ID", "")
+        client_secret = os.environ.get("GBP_CLIENT_SECRET") or APP.manager.config.get("CLIENT_SECRET", "")
+        redirect_uri = os.environ.get("GBP_REDIRECT_URI") or APP.manager.config.get("REDIRECT_URI", "")
+
         try:
             resp = http_requests.post(GOOGLE_TOKEN_URL, data={
                 "code": code,
-                "client_id": APP.manager.config["CLIENT_ID"],
-                "client_secret": APP.manager.config["CLIENT_SECRET"],
-                "redirect_uri": APP.manager.config["REDIRECT_URI"],
+                "client_id": client_id,
+                "client_secret": client_secret,
+                "redirect_uri": redirect_uri,
                 "grant_type": "authorization_code",
             }, timeout=15)
             resp.raise_for_status()
