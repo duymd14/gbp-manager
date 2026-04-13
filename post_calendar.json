@@ -1,0 +1,314 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Lịch đăng bài 30 ngày cho GBP – Dành cho chủ nhà hàng Việt tại Đức",
+    "languages": ["de", "en"],
+    "industries": ["restaurant", "beauty"],
+    "variables": ["{restaurant}", "{city}", "{website}"],
+    "cta_options": ["LEARN_MORE", "ORDER_ONLINE", "BOOK", "GET_OFFER"],
+    "last_updated": "2026-04-13",
+    "usage": "Script tự động xoay vòng bài đăng này cho từng địa điểm"
+  },
+
+  "posts": [
+    {
+      "id": 1,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 1,
+      "theme": "Giới thiệu món đặc trưng",
+      "cta": "LEARN_MORE",
+      "content": "Entdecken Sie unsere Signature Pho Bo bei {restaurant} in {city}! 🍜\n\nUnsere Brühe wird täglich über mehrere Stunden mit frischen Knochen, Gewürzen und Kräutern gekocht – ein Rezept mit Herz und Tradition. Dazu frische Reisnudeln, zarte Rindfleischstreifen und Kräuter nach Wahl.\n\nPerfekt für ein wärmendes Mittagessen oder entspanntes Abendessen.\n\n📍 {city} · ⏰ Täglich geöffnet\n👉 Mehr auf {website}"
+    },
+    {
+      "id": 2,
+      "type": "restaurant",
+      "lang": "en",
+      "week": 1,
+      "theme": "Signature Dish Intro",
+      "cta": "LEARN_MORE",
+      "content": "Craving something warm and comforting in {city}? 🍜\n\nCome discover our Signature Pho Bo at {restaurant}! Slow-cooked bone broth, fresh rice noodles, tender beef slices, and a generous garnish of herbs, lime, and chilli. Made fresh every single day – because you deserve the real thing.\n\n📍 Visit us in {city}\n👉 Full menu at {website}"
+    },
+    {
+      "id": 3,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 1,
+      "theme": "Halal / Zutaten frisch",
+      "cta": "LEARN_MORE",
+      "content": "Frisch. Halal. Authentisch. 🌿\n\nBei {restaurant} in {city} legen wir größten Wert auf frische, hochwertige Zutaten. Unsere Speisen sind Halal-freundlich – für alle, die guten Gewissens genießen möchten.\n\nOb Pho Ga (Hähnchen), Pho Bo (Rind) oder vegetarische Optionen – bei uns ist für jeden etwas dabei.\n\n📍 Besuchen Sie uns in {city}\n🌐 Mehr unter {website}"
+    },
+    {
+      "id": 4,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 1,
+      "theme": "Mittagsangebot",
+      "cta": "ORDER_ONLINE",
+      "content": "🌞 Mittagspause bei {restaurant}!\n\nGenießen Sie eine heiße Schüssel Pho oder eines unserer vietnamesischen Wokgerichte – schnell, lecker und bezahlbar. Ideal für Studenten, Berufstätige und alle, die eine echte Auszeit brauchen.\n\n⏰ Schneller Mittagsservice · Kein langes Warten\n📍 {city} · Online bestellen auf {website}"
+    },
+    {
+      "id": 5,
+      "type": "restaurant",
+      "lang": "en",
+      "week": 1,
+      "theme": "Lunch Break",
+      "cta": "ORDER_ONLINE",
+      "content": "Lunch break? Make it Vietnamese! 🌿\n\nAt {restaurant} in {city} we serve fast, delicious, and affordable Vietnamese food – perfect for students, professionals, and everyone in between. Grab a bowl of pho, a fresh summer roll, or a hearty rice dish.\n\n⏰ Quick service · Fresh ingredients · Great value\n🛒 Order online at {website}"
+    },
+    {
+      "id": 6,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 2,
+      "theme": "Gruppenessen / Reservierung",
+      "cta": "BOOK",
+      "content": "Familienessen, Geburtstagsfeier oder Firmenessen? 🎉\n\nBei {restaurant} in {city} sind Gruppen herzlich willkommen! Wir bieten ausreichend Platz, ein vielfältiges Menü und herzliche Gastfreundschaft – genau richtig für besondere Anlässe.\n\n📞 Jetzt Tisch reservieren!\n📍 {city} · {website}"
+    },
+    {
+      "id": 7,
+      "type": "restaurant",
+      "lang": "en",
+      "week": 2,
+      "theme": "Group Dining",
+      "cta": "BOOK",
+      "content": "Planning a group dinner in {city}? 🎉\n\n{restaurant} is the perfect spot for birthdays, family gatherings, or casual work dinners! We have space, great food, and a warm team ready to make your event special.\n\n📞 Reserve your table now!\n🌐 {website}"
+    },
+    {
+      "id": 8,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 2,
+      "theme": "Frische Kräuter / Zutaten Story",
+      "cta": "LEARN_MORE",
+      "content": "Wissen Sie, was unsere Pho so besonders macht? 🌿\n\nEs sind die Details: frische Thai-Basilikum, knackige Sojasprossen, duftender Koriander und hausgemachte Chiliöle – alles täglich frisch vorbereitet.\n\nBei {restaurant} in {city} glauben wir: Gutes Essen beginnt mit guten Zutaten.\n\n👉 Besuchen Sie uns und schmecken Sie den Unterschied! {website}"
+    },
+    {
+      "id": 9,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 2,
+      "theme": "Takeaway / To Go",
+      "cta": "ORDER_ONLINE",
+      "content": "🥡 Vietnamesisches Essen direkt zu Ihnen!\n\nKeine Zeit zum Sitzen? Bestellen Sie Ihre Lieblingsspeisen von {restaurant} als Take-away – schnell fertig, lecker und frisch verpackt.\n\nOb Pho, Bún bò oder Bánh mì – alles auch zum Mitnehmen oder zur Lieferung.\n\n📦 Jetzt bestellen auf {website}"
+    },
+    {
+      "id": 10,
+      "type": "restaurant",
+      "lang": "en",
+      "week": 2,
+      "theme": "Takeaway",
+      "cta": "ORDER_ONLINE",
+      "content": "Vietnamese food on the go! 🥡\n\nNo time to dine in? No problem! Order your favourite dishes from {restaurant} for takeaway or delivery. Everything is freshly prepared and packed with care – pho, rice dishes, spring rolls and more.\n\n📦 Order now: {website}"
+    },
+    {
+      "id": 11,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 3,
+      "theme": "Bewertungen / Social Proof",
+      "cta": "LEARN_MORE",
+      "content": "⭐⭐⭐⭐⭐ Unsere Gäste lieben uns!\n\n\"Die beste Pho in {city}!\" – Danke für diese wunderbaren Worte, die uns jeden Tag anspornen.\n\nBei {restaurant} arbeiten wir mit Leidenschaft daran, jedes Gericht perfekt zu machen. Besuchen Sie uns und überzeugen Sie sich selbst!\n\n📍 {city} · 🌐 {website}"
+    },
+    {
+      "id": 12,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 3,
+      "theme": "Studentenfreundlich",
+      "cta": "LEARN_MORE",
+      "content": "Studentenfreundliche Preise – großartige Qualität! 🎓\n\nBei {restaurant} in {city} glauben wir, dass gutes Essen für alle zugänglich sein sollte. Unsere Bowls sind günstig, sättigend und vollgepackt mit Geschmack.\n\nIdeal für eine Pause zwischen den Vorlesungen oder ein entspanntes Abendessen!\n\n📍 {city} · {website}"
+    },
+    {
+      "id": 13,
+      "type": "restaurant",
+      "lang": "en",
+      "week": 3,
+      "theme": "Student-Friendly",
+      "cta": "LEARN_MORE",
+      "content": "Delicious food doesn't have to break the bank! 🎓\n\nAt {restaurant} in {city}, we offer hearty, authentic Vietnamese bowls at student-friendly prices. Big portions, fresh ingredients, and real flavours – the perfect fuel for a busy day.\n\n📍 {city} · 🌐 {website}"
+    },
+    {
+      "id": 14,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 3,
+      "theme": "Abendessen / Atmosphäre",
+      "cta": "BOOK",
+      "content": "Das perfekte Abendessen in {city} 🌙\n\nNach einem langen Tag verdienen Sie sich etwas Gutes. Kommen Sie zu {restaurant} und lassen Sie sich von unserer Küche verwöhnen – warme Brühe, herzliches Ambiente, freundliches Team.\n\nReservieren Sie jetzt Ihren Tisch!\n📞 {website}"
+    },
+    {
+      "id": 15,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 4,
+      "theme": "Wochenendspecial",
+      "cta": "GET_OFFER",
+      "content": "🎉 Wochenend-Special bei {restaurant}!\n\nDieses Wochenende: Genießen Sie unsere frischen Sommerrollen als Vorspeise – der perfekte Start für ein ausgiebiges vietnamesisches Essen.\n\nKommen Sie mit Familie oder Freunden und machen Sie ein Erlebnis daraus!\n\n📍 {city} · Samstag & Sonntag · Mehr auf {website}"
+    },
+    {
+      "id": 16,
+      "type": "restaurant",
+      "lang": "en",
+      "week": 4,
+      "theme": "Weekend Special",
+      "cta": "GET_OFFER",
+      "content": "Weekend vibes at {restaurant}! 🎉\n\nCome spend your Saturday or Sunday with us! This weekend we're featuring our fresh handmade spring rolls as a starter – crispy, light, and absolutely delicious.\n\nBring friends, bring family, bring your appetite!\n\n📍 {city} · {website}"
+    },
+    {
+      "id": 17,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 4,
+      "theme": "Saisonales Gericht",
+      "cta": "LEARN_MORE",
+      "content": "🌸 Frühlings-Special bei {restaurant}!\n\nDer Frühling bringt neue Aromen – und wir feiern das mit einem besonderen saisonalen Gericht auf unserer Karte. Frische Zutaten, neue Geschmäcker, bewährte Qualität.\n\nNeugierig? Besuchen Sie uns und entdecken Sie, was diese Saison besonders macht!\n\n📍 {city} · {website}"
+    },
+    {
+      "id": 18,
+      "type": "restaurant",
+      "lang": "de",
+      "week": 4,
+      "theme": "Story / Hậu trường",
+      "cta": "LEARN_MORE",
+      "content": "Ein Blick hinter die Kulissen von {restaurant} 👨‍🍳\n\nJeden Morgen beginnt unser Team bereits früh damit, die frische Brühe anzusetzen, Kräuter vorzubereiten und Teige zu kneten. Für uns ist Kochen nicht nur ein Job – es ist Leidenschaft.\n\nBei {restaurant} in {city} steckt in jedem Gericht eine Geschichte. Kommen Sie und schmecken Sie sie selbst! 🍜\n\n{website}"
+    },
+
+    {
+      "id": 19,
+      "type": "beauty",
+      "lang": "de",
+      "week": 1,
+      "theme": "Giới thiệu studio",
+      "cta": "BOOK",
+      "content": "Willkommen bei {restaurant} in {city}! ✨\n\nIhr Beauty-Studio für professionelle Wimpernverlängerungen, gepflegte Nägel und exklusives Beauty-Styling. Unser erfahrenes Team sorgt dafür, dass Sie sich wunderschön und wohl fühlen.\n\n💅 Nageldesign · 🌟 Wimpern · ✨ Beauty Treatments\n\n📞 Termin jetzt buchen!\n🌐 {website}"
+    },
+    {
+      "id": 20,
+      "type": "beauty",
+      "lang": "en",
+      "week": 1,
+      "theme": "Studio Introduction",
+      "cta": "BOOK",
+      "content": "Welcome to {restaurant} in {city}! 💕\n\nYour go-to destination for stunning lash extensions, beautiful nail art, and premium beauty treatments. Our expert team is here to make you look and feel absolutely gorgeous.\n\n💅 Nail art · 👁 Lash extensions · ✨ Beauty treatments\n\n📅 Book your appointment today!\n🌐 {website}"
+    },
+    {
+      "id": 21,
+      "type": "beauty",
+      "lang": "de",
+      "week": 1,
+      "theme": "Wimpernverlängerung Feature",
+      "cta": "BOOK",
+      "content": "Perfekte Wimpern – jeden Tag! 🌟\n\nMit einer professionellen Wimpernverlängerung bei {restaurant} in {city} wachen Sie jeden Morgen perfekt auf – kein Mascara, kein Aufwand, nur natürliche Schönheit.\n\nUnsere Artists verwenden nur hochwertige Materialien für ein sicheres und langhaltendes Ergebnis.\n\n📞 Jetzt Termin sichern!\n🌐 {website}"
+    },
+    {
+      "id": 22,
+      "type": "beauty",
+      "lang": "en",
+      "week": 1,
+      "theme": "Lash Extensions Feature",
+      "cta": "BOOK",
+      "content": "Wake up gorgeous every single day! 👁✨\n\nProfessional lash extensions at {restaurant} in {city} – no mascara needed, no morning stress, just effortless beauty. Our certified lash artists tailor every set to your eye shape and desired look.\n\nSafe materials · Long-lasting results · Personalised service\n\n📅 Book now at {website}"
+    },
+    {
+      "id": 23,
+      "type": "beauty",
+      "lang": "de",
+      "week": 2,
+      "theme": "Nageldesign / Trends",
+      "cta": "BOOK",
+      "content": "💅 Nageltrends 2026 bei {restaurant}!\n\nVon klassisch elegant bis kreativ bunt – bei uns ist jeder Nagelwunsch willkommen. Unsere Nail Artists bleiben immer auf dem neuesten Stand der Trends und setzen Ihre Ideen mit Präzision um.\n\nBuchen Sie jetzt Ihren Nageltermin in {city}!\n🌐 {website}"
+    },
+    {
+      "id": 24,
+      "type": "beauty",
+      "lang": "en",
+      "week": 2,
+      "theme": "Nail Trends",
+      "cta": "BOOK",
+      "content": "Spring nail inspo is here! 🌸💅\n\nFrom minimalist chic to bold statement nails – our nail artists at {restaurant} in {city} are ready to bring your vision to life. Using only premium gel products for a flawless, long-lasting finish.\n\n✨ Nail art · Gel · Acryl · French · Ombre\n\n📅 Book your session at {website}"
+    },
+    {
+      "id": 25,
+      "type": "beauty",
+      "lang": "de",
+      "week": 2,
+      "theme": "Verwöhnen / Selbstfürsorge",
+      "cta": "BOOK",
+      "content": "Sie haben es verdient! 💕\n\nNehmen Sie sich eine Auszeit und verwöhnen Sie sich bei {restaurant} in {city}. Ob Wimpern, Nägel oder ein Beauty-Treatment – wir sorgen dafür, dass Sie sich rundum wohlfühlen.\n\nDenn wahre Schönheit beginnt mit Selbstfürsorge. ✨\n\n📞 Termin buchen: {website}"
+    },
+    {
+      "id": 26,
+      "type": "beauty",
+      "lang": "en",
+      "week": 2,
+      "theme": "Self-Care",
+      "cta": "BOOK",
+      "content": "You deserve a little TLC! 💕\n\nTake some time just for you at {restaurant} in {city}. Treat yourself to beautiful lashes, gorgeous nails, or a relaxing beauty treatment in our cosy studio. Life is too short for bad nails! ✨\n\n📅 Book your me-time at {website}"
+    },
+    {
+      "id": 27,
+      "type": "beauty",
+      "lang": "de",
+      "week": 3,
+      "theme": "Geschenk / Gutschein",
+      "cta": "GET_OFFER",
+      "content": "🎁 Schenken Sie Schönheit!\n\nSie suchen das perfekte Geschenk für eine Freundin, Mama oder Schwester? Ein Beauty-Gutschein von {restaurant} in {city} ist immer eine tolle Idee!\n\nEinfach anfragen und wir stellen gerne einen personalisierten Gutschein für Sie aus.\n\n💕 Perfekt für Geburtstage, Muttertag & Co.\n📞 Kontakt: {website}"
+    },
+    {
+      "id": 28,
+      "type": "beauty",
+      "lang": "en",
+      "week": 3,
+      "theme": "Gift Voucher",
+      "cta": "GET_OFFER",
+      "content": "The gift that never goes out of style! 🎁\n\nLooking for the perfect present? Gift a beauty experience at {restaurant} in {city}! Perfect for birthdays, Mother's Day, anniversaries, or just because.\n\n💕 Lash extensions · Nail treatments · Beauty sessions\n\n📞 Contact us for a personalised voucher: {website}"
+    },
+    {
+      "id": 29,
+      "type": "beauty",
+      "lang": "de",
+      "week": 3,
+      "theme": "Ergebnis / Vorher-Nachher",
+      "cta": "BOOK",
+      "content": "Der Unterschied spricht für sich! ✨\n\nUnsere Kunden kommen für schöne Nägel und Wimpern – und gehen mit einem strahlenden Lächeln. Sehen Sie selbst, was professionelle Beauty-Behandlungen bei {restaurant} in {city} bewirken können.\n\n📸 Mehr Ergebnisse auf Google & Instagram\n📞 Termin: {website}"
+    },
+    {
+      "id": 30,
+      "type": "beauty",
+      "lang": "de",
+      "week": 4,
+      "theme": "Wochenendtermine",
+      "cta": "BOOK",
+      "content": "Wochenend-Slots noch verfügbar! 📅\n\nSie möchten sich dieses Wochenende etwas gönnen? Wir haben noch Termine frei bei {restaurant} in {city}!\n\nNagelneugestaltung, Wimpernverlängerung oder ein Beauty-Treatment – worauf haben Sie Lust?\n\n💅 Jetzt schnell buchen, bevor die Slots weg sind!\n🌐 {website}"
+    },
+    {
+      "id": 31,
+      "type": "beauty",
+      "lang": "en",
+      "week": 4,
+      "theme": "Weekend Slots Available",
+      "cta": "BOOK",
+      "content": "Weekend appointments available! 📅\n\nLooking to treat yourself this weekend? We still have some slots open at {restaurant} in {city} – but they're filling up fast!\n\n💅 Nails · 👁 Lashes · ✨ Beauty treatments\n\nBook now before they're gone!\n🌐 {website}"
+    },
+    {
+      "id": 32,
+      "type": "beauty",
+      "lang": "de",
+      "week": 4,
+      "theme": "Expertise / Team",
+      "cta": "LEARN_MORE",
+      "content": "Leidenschaft trifft Handwerk. 💕\n\nUnser Team bei {restaurant} in {city} liebt, was es tut – und das sieht man in jedem Pinselstrich, jeder Wimper und jedem Design. Mit jahrelanger Erfahrung und ständiger Weiterbildung garantieren wir Ihnen Top-Qualität.\n\nVertrauen Sie dem Team, das Schönheit versteht. ✨\n\n🌐 {website}"
+    }
+  ],
+
+  "schedule_template": {
+    "description": "Lịch đề xuất cho 30 ngày với 2 ngày/bài",
+    "posts_per_location_per_month": 15,
+    "rotation_strategy": "Xoay vòng theo ID địa điểm + ngày trong năm",
+    "time": "22:07",
+    "timezone": "Europe/Berlin",
+    "days_of_week": ["Mon", "Wed", "Fri"],
+    "notes": "Script tự động chọn bài theo type (restaurant/beauty) và xoay vòng ngôn ngữ DE/EN theo tỷ lệ 70/30"
+  }
+}

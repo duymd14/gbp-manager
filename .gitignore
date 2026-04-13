@@ -1,0 +1,19 @@
+# Không commit token và credentials
+gbp_token.json
+.env
+*.env
+
+# Không commit file log
+*.log
+gbp_manager.log
+
+# macOS
+.DS_Store
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# File locations thật (chứa thông tin nhạy cảm)
+locations.json

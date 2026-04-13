@@ -1,0 +1,236 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "Bộ template reply review GBP cho chủ nhà hàng Việt tại Đức",
+    "languages": ["de", "en"],
+    "industries": ["restaurant", "beauty"],
+    "variables": ["{name}", "{restaurant}", "{city}"],
+    "last_updated": "2026-04-13"
+  },
+
+  "restaurant": {
+    "positive_de": [
+      {
+        "id": "r_pos_de_01",
+        "name": "Cảm ơn tiêu chuẩn – 5 sao (DE)",
+        "stars": [5],
+        "text": "Vielen herzlichen Dank, {name}! 🙏 Es freut uns sehr zu hören, dass Sie Ihren Besuch bei {restaurant} genossen haben. Unsere Küche legt täglich großen Wert auf frische Zutaten und authentische Aromen – schön, dass das bei Ihnen ankam! Wir freuen uns auf Ihren nächsten Besuch in {city}. Herzliche Grüße, Ihr {restaurant}-Team 🍜"
+      },
+      {
+        "id": "r_pos_de_02",
+        "name": "Brühe / Pho đặc biệt (DE)",
+        "stars": [5],
+        "text": "Tausend Dank, {name}! 🍜 Unsere Pho wird täglich mit viel Liebe und frisch gekochter Brühe zubereitet – wir freuen uns sehr, dass Sie das genießen konnten! Kommen Sie bald wieder vorbei. Wir haben immer neue Specials für Sie. Herzlichst, das Team von {restaurant}"
+      },
+      {
+        "id": "r_pos_de_03",
+        "name": "Atmosphäre và Service (DE)",
+        "stars": [5],
+        "text": "Herzlichen Dank für Ihre wundervolle Bewertung, {name}! ✨ Es ist uns sehr wichtig, dass sich unsere Gäste bei {restaurant} rundum wohlfühlen – mit leckerem Essen und herzlichem Service. Ihr Lob gibt uns täglich Motivation. Auf ein baldiges Wiedersehen in {city}!"
+      },
+      {
+        "id": "r_pos_de_04",
+        "name": "Nhóm bạn bè / gia đình (DE)",
+        "stars": [4, 5],
+        "text": "Vielen Dank, {name}! 🎉 Wir freuen uns sehr, dass Sie gemeinsam mit Ihren Liebsten eine schöne Zeit bei uns verbracht haben. {restaurant} ist der perfekte Ort für ein gemütliches Essen – ob mit Freunden oder der Familie. Wir sehen uns bald wieder!"
+      },
+      {
+        "id": "r_pos_de_05",
+        "name": "Halal / Chế độ ăn đặc biệt (DE)",
+        "stars": [5],
+        "text": "Herzlichen Dank, {name}! 🌿 Es freut uns sehr, dass unsere Halal-freundlichen Optionen Ihnen gefallen haben. Bei {restaurant} achten wir auf die Bedürfnisse aller Gäste. Kommen Sie gerne wieder – wir haben immer mehr leckere Auswahl für Sie bereit!"
+      }
+    ],
+
+    "positive_en": [
+      {
+        "id": "r_pos_en_01",
+        "name": "Standard Thank You – 5 Stars (EN)",
+        "stars": [5],
+        "text": "Thank you so much, {name}! 🙏 We're truly thrilled to hear you enjoyed your visit to {restaurant}. We put so much love into every bowl – fresh herbs, slow-cooked broth, and authentic Vietnamese flavors every single day. Your kind words mean the world to us! We can't wait to welcome you back to {city}. Warm regards, the {restaurant} team 🍜"
+      },
+      {
+        "id": "r_pos_en_02",
+        "name": "Pho / Broth Specific (EN)",
+        "stars": [5],
+        "text": "Wow, thank you {name}! 🍜 It makes us so happy to know you loved the broth! Our chefs prepare it fresh every morning – it's truly a labor of love. Please come back soon and try our seasonal specials. We can't wait to see you again at {restaurant}!"
+      },
+      {
+        "id": "r_pos_en_03",
+        "name": "Atmosphere & Staff (EN)",
+        "stars": [4, 5],
+        "text": "Thank you for the lovely review, {name}! ✨ Creating a warm and welcoming atmosphere is something we truly care about at {restaurant}. It's wonderful to hear that our team made your experience special. Please visit us again soon in {city} – we'd love to have you back!"
+      },
+      {
+        "id": "r_pos_en_04",
+        "name": "Friends / Family Visit (EN)",
+        "stars": [5],
+        "text": "Thank you so much, {name}! 🎉 We love knowing that {restaurant} was the perfect spot for a great meal together! Whether it's lunch, dinner, or a cozy group outing – our doors are always open. Hope to see you and your friends again very soon!"
+      }
+    ],
+
+    "neutral_de": [
+      {
+        "id": "r_neu_de_01",
+        "name": "Trung tính 3 sao (DE)",
+        "stars": [3],
+        "text": "Vielen Dank für Ihre Bewertung, {name}! Wir freuen uns über jedes ehrliche Feedback. Wir sind stets bemüht, uns zu verbessern und würden uns freuen, Sie bald wieder bei {restaurant} begrüßen zu dürfen – vielleicht beim nächsten Besuch mit einem noch besseren Erlebnis! Herzliche Grüße aus {city}"
+      },
+      {
+        "id": "r_neu_de_02",
+        "name": "Cải thiện & Phản hồi (DE)",
+        "stars": [3],
+        "text": "Danke für Ihre Zeit und Ihr Feedback, {name}. Wir nehmen jede Meinung unserer Gäste sehr ernst. Falls Sie konkrete Verbesserungsvorschläge haben, freuen wir uns über eine direkte Nachricht an uns. Wir hoffen, Sie beim nächsten Mal noch besser begeistern zu können!"
+      }
+    ],
+
+    "neutral_en": [
+      {
+        "id": "r_neu_en_01",
+        "name": "Neutral 3 Stars (EN)",
+        "stars": [3],
+        "text": "Thank you for your honest review, {name}! We appreciate all feedback as it helps us grow. We'd love to invite you back to {restaurant} to show you what we can do even better. If there's anything specific you'd like us to improve, feel free to message us directly!"
+      }
+    ],
+
+    "negative_de": [
+      {
+        "id": "r_neg_de_01",
+        "name": "Xin lỗi tiêu chuẩn 1–2 sao (DE)",
+        "stars": [1, 2],
+        "text": "Sehr geehrte/r {name},\n\nvielen Dank für Ihr ehrliches Feedback. Es tut uns wirklich leid zu hören, dass Ihr Besuch bei {restaurant} nicht Ihren Erwartungen entsprach. Das entspricht absolut nicht unserem Standard und wir entschuldigen uns aufrichtig.\n\nWir würden sehr gerne die Möglichkeit bekommen, das wiedergutzumachen. Bitte kontaktieren Sie uns direkt – wir möchten mit Ihnen persönlich sprechen.\n\nMit freundlichen Grüßen,\nDas {restaurant}-Team"
+      },
+      {
+        "id": "r_neg_de_02",
+        "name": "Xin lỗi – Thời gian chờ (DE)",
+        "stars": [1, 2],
+        "text": "Liebe/r {name},\n\nwir entschuldigen uns aufrichtig für die lange Wartezeit bei Ihrem Besuch. Das ist leider an manchen Stoßzeiten vorgekommen und entspricht nicht unserem Anspruch. Wir arbeiten intensiv daran, unsere Abläufe zu verbessern. Ihr Feedback hilft uns dabei sehr.\n\nWir würden uns freuen, Sie erneut begrüßen zu dürfen.\n\nHerzliche Grüße, das {restaurant}-Team"
+      },
+      {
+        "id": "r_neg_de_03",
+        "name": "Xin lỗi – Chất lượng món ăn (DE)",
+        "stars": [1, 2],
+        "text": "Liebe/r {name},\n\nvielen Dank für Ihre offene Rückmeldung. Es tut uns sehr leid, dass die Speisen bei Ihrem Besuch nicht unserer gewohnten Qualität entsprachen. Das nehmen wir sehr ernst.\n\nBitte kontaktieren Sie uns direkt unter unserer E-Mail oder Telefonnummer – wir möchten das persönlich mit Ihnen besprechen und Ihnen eine schöne Erfahrung ermöglichen.\n\nMit freundlichen Grüßen,\n{restaurant}-Team"
+      }
+    ],
+
+    "negative_en": [
+      {
+        "id": "r_neg_en_01",
+        "name": "Standard Apology 1–2 Stars (EN)",
+        "stars": [1, 2],
+        "text": "Dear {name},\n\nThank you for taking the time to share your experience. We are truly sorry to hear that your visit to {restaurant} did not meet your expectations. This is not the standard we hold ourselves to, and we sincerely apologize.\n\nWe would love the opportunity to make it right. Please feel free to contact us directly – we'd love to speak with you personally.\n\nWarm regards,\nThe {restaurant} Team"
+      },
+      {
+        "id": "r_neg_en_02",
+        "name": "Waiting Time Apology (EN)",
+        "stars": [1, 2],
+        "text": "Dear {name},\n\nWe're so sorry about the long wait time during your visit. We know your time is precious and we deeply regret the inconvenience. We are actively working to improve our service speed, especially during peak hours. Your feedback is invaluable to us.\n\nWe hope you'll give us another chance to impress you.\n\nBest regards, {restaurant} Team"
+      }
+    ]
+  },
+
+  "beauty": {
+    "positive_de": [
+      {
+        "id": "b_pos_de_01",
+        "name": "Cảm ơn tiêu chuẩn – Beauty (DE)",
+        "stars": [5],
+        "text": "Vielen lieben Dank, {name}! 💕 Wir freuen uns sehr, dass Sie mit Ihrem Ergebnis bei {restaurant} zufrieden sind! Unser Team gibt immer sein Bestes, um Ihnen das schönste Ergebnis zu liefern. Wir sehen uns beim nächsten Termin! ✨ Bis bald, Ihr {restaurant}-Team"
+      },
+      {
+        "id": "b_pos_de_02",
+        "name": "Wimpernverlängerung spezifisch (DE)",
+        "stars": [5],
+        "text": "Danke, {name}! 🌟 Es ist so schön zu hören, dass Sie Ihre Wimpernverlängerung lieben! Unsere Artists legen größten Wert auf Präzision und natürliche Schönheit. Wir freuen uns schon auf Ihr nächstes Auffüllen! Bis bald bei {restaurant} in {city} 💫"
+      },
+      {
+        "id": "b_pos_de_03",
+        "name": "Nageldesign spezifisch (DE)",
+        "stars": [5],
+        "text": "Wow, tausend Dank {name}! 💅 Es freut uns riesig, dass Ihre Nägel so schön geworden sind! Zeigen Sie uns gerne Ihre Fotos auf Instagram – wir lieben es, unsere Arbeiten zu sehen. Bis zum nächsten Termin bei {restaurant}! 🎀"
+      },
+      {
+        "id": "b_pos_de_04",
+        "name": "Atmosphäre / Wohlfühlen (DE)",
+        "stars": [4, 5],
+        "text": "Herzlichen Dank für Ihre tolle Bewertung, {name}! 🌸 Wir möchten, dass Sie sich bei {restaurant} von Anfang bis Ende wohlfühlen. Es macht uns sehr glücklich zu hören, dass wir das geschafft haben! Wir freuen uns auf Ihren nächsten Besuch in {city}!"
+      },
+      {
+        "id": "b_pos_de_05",
+        "name": "Empfehlung / Weiterempfehlen (DE)",
+        "stars": [5],
+        "text": "Das macht uns so glücklich, {name}! 💕 Ihre Empfehlung bedeutet uns wirklich viel. Bei {restaurant} arbeiten wir mit viel Leidenschaft daran, unsere Kunden zu begeistern. Wir freuen uns, Sie und Ihre Freunde bald wieder bei uns zu begrüßen! 🌟"
+      }
+    ],
+
+    "positive_en": [
+      {
+        "id": "b_pos_en_01",
+        "name": "Standard Thank You – Beauty (EN)",
+        "stars": [5],
+        "text": "Thank you so much, {name}! 💕 We're absolutely thrilled that you loved your experience at {restaurant}! Our team puts so much care into every single appointment to make sure you leave feeling beautiful and confident. We can't wait to see you again! ✨ See you soon, {restaurant} team"
+      },
+      {
+        "id": "b_pos_en_02",
+        "name": "Lash Extension Specific (EN)",
+        "stars": [5],
+        "text": "Thank you, {name}! 🌟 We're so happy you love your lashes! Our lash artists are truly passionate about creating the most flattering, natural-looking extensions for each client. We'd love to see you at your next fill appointment at {restaurant} in {city}! 💫"
+      },
+      {
+        "id": "b_pos_en_03",
+        "name": "Nail Art Specific (EN)",
+        "stars": [5],
+        "text": "Wow, thank you {name}! 💅 We're so glad your nails turned out exactly the way you wanted! Our nail artists love bringing your vision to life. Please share your photos with us on Instagram – we love seeing our clients' looks! Can't wait to have you back at {restaurant}! 🎀"
+      },
+      {
+        "id": "b_pos_en_04",
+        "name": "First-Time Client (EN)",
+        "stars": [5],
+        "text": "Welcome to the {restaurant} family, {name}! 💕 We're so happy you chose us for your first visit and even happier that you enjoyed it! We'd love to be your go-to beauty spot in {city}. Book your next appointment anytime – we can't wait to see you again! ✨"
+      }
+    ],
+
+    "neutral_de": [
+      {
+        "id": "b_neu_de_01",
+        "name": "Trung tính 3 sao – Beauty (DE)",
+        "stars": [3],
+        "text": "Danke für Ihre Bewertung, {name}! 💕 Ihr Feedback ist uns sehr wichtig. Wenn es etwas gibt, das wir beim nächsten Mal besser machen können, freuen wir uns über eine direkte Nachricht. Wir hoffen, Sie bald wieder bei {restaurant} in {city} begrüßen zu dürfen!"
+      }
+    ],
+
+    "neutral_en": [
+      {
+        "id": "b_neu_en_01",
+        "name": "Neutral 3 Stars – Beauty (EN)",
+        "stars": [3],
+        "text": "Thank you for your feedback, {name}! 💕 We always strive to give every client the best experience possible at {restaurant}. If there's anything specific we could do better, please don't hesitate to message us directly. We hope to see you again and exceed your expectations!"
+      }
+    ],
+
+    "negative_de": [
+      {
+        "id": "b_neg_de_01",
+        "name": "Xin lỗi tiêu chuẩn – Beauty (DE)",
+        "stars": [1, 2],
+        "text": "Liebe/r {name},\n\nvielen Dank für Ihr Feedback. Es tut uns sehr leid zu hören, dass Ihr Besuch bei {restaurant} nicht Ihren Erwartungen entsprochen hat. Das entspricht nicht unserem Standard und wir möchten das gerne wiedergutmachen.\n\nBitte kontaktieren Sie uns direkt – Ihr Wohlbefinden liegt uns sehr am Herzen.\n\nMit herzlichen Grüßen, Ihr {restaurant}-Team 💕"
+      },
+      {
+        "id": "b_neg_de_02",
+        "name": "Xin lỗi – Kết quả (DE)",
+        "stars": [1, 2],
+        "text": "Liebe/r {name},\n\nwir sind traurig zu hören, dass das Ergebnis nicht Ihren Wünschen entsprach. Das tut uns wirklich leid. Bei {restaurant} nehmen wir die Zufriedenheit unserer Kunden sehr ernst. Bitte melden Sie sich direkt bei uns – wir finden gemeinsam eine Lösung.\n\nHerzliche Grüße, das {restaurant}-Team"
+      }
+    ],
+
+    "negative_en": [
+      {
+        "id": "b_neg_en_01",
+        "name": "Standard Apology – Beauty (EN)",
+        "stars": [1, 2],
+        "text": "Dear {name},\n\nWe are so sorry to hear about your experience at {restaurant}. This is absolutely not the standard we hold ourselves to and we sincerely apologize. Please reach out to us directly so we can make this right for you.\n\nYour satisfaction truly means everything to us.\n\nWarm regards, the {restaurant} team 💕"
+      }
+    ]
+  }
+}

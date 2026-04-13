@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "name": "PHO Noodle Bar - Kreuzberg",
+    "area": "Kreuzberg",
+    "city": "Berlin",
+    "type": "restaurant",
+    "accountId": "accounts/1234567890",
+    "locationId": "locations/1234567890",
+    "website": "https://example.com",
+    "keywords": ["pho bo", "vietnamese food", "asian restaurant", "halal", "kreuzberg"],
+    "active": true
+  }
+]
